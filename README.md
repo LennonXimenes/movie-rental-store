@@ -1,4 +1,4 @@
-# movie-rental-store
+# movie rental store
 
 Project Description: Development of a REST API for Managing Movies on a Streaming Platform
 
