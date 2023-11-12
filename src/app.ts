@@ -1,18 +1,19 @@
 import express, { Application, json } from "express";
 import { createMovie, deleteMovie, readMovies, retriveMovies, updateMovie } from "./logic";
 import { startDatabase } from "./database";
+import { verifyId, verifyName } from "./middlewares";
 
 const app: Application = express();
 app.use(json());
 
 app.get("/movies", readMovies);
-app.get("/movies/:id", retriveMovies);
+app.get("/movies/:id", verifyId, retriveMovies);
 
-app.post("/movies", createMovie);
+app.post("/movies", verifyName, createMovie);
 
-app.patch("/movies/:id", updateMovie);
+app.patch("/movies/:id", verifyId, verifyName, updateMovie);
 
-app.delete("/movies/:id", deleteMovie);
+app.delete("/movies/:id", verifyId, deleteMovie);
 
 
 const PORT: number = Number(process.env.PORT) || 3000;

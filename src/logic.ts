@@ -61,18 +61,18 @@ const updateMovie = async (req: Request, res: Response): Promise<Response> => {
 
     const queryResult: QueryResult = await client.query(queryString, [req.params.id]);
 
-    return res.status(201).json(queryResult.rows[0]);
+    return res.status(200).json(queryResult.rows[0]);
 };
 
 const deleteMovie = async (req: Request, res: Response): Promise<Response> => {
     const queryString: string = `
         DELETE FROM "movies"
         WHERE id = $1;
-    `
+    `;
 
     await client.query(queryString, [req.params.id]);
 
     return res.status(204).json();
-}
+};
 
 export { readMovies, retriveMovies, createMovie, updateMovie, deleteMovie };
